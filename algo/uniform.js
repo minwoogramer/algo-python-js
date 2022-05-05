@@ -12,7 +12,7 @@ function solution(n, lost, reserve) {
            return lostStudent;
        }else{
            reserve.splice(reserveIdx,1);//reserveIdx번쨰 요소에서 한개 제거
-           answer++//반복 시켜주기 위해 더하기를해줌
+           answer++
        }
        });
    
