@@ -1,7 +1,7 @@
 
 //bfs
 //동작원리 = 큐
-//구현 방법= 큐 자료구조
+//구현 방법= 큐 자료구조(선입선출FIFO구조) push와 shift를 사용해 자료구조를 구현한다.
 
 //최소값을 구하는 문제이기때문에 bfs가 더빠르다.
 function solution(begin, target, words) {
@@ -13,7 +13,7 @@ function solution(begin, target, words) {
 
     queue.push([begin, 0])//큐 시작
 
-    while(queue) {
+    while(queue) {//큐를 이용해 반복문사용
         const [word, count] = queue.shift()//큐에서 하나의 원소를 뽑아 출력 구조..분해...할당!
         visited.push(word)
 
@@ -25,7 +25,7 @@ function solution(begin, target, words) {
         words.forEach((_word) => {
             let diff = 0
 
-            if (visited.includes(_word)) return
+            if (visited.includes(_word)) return // 만약 내가 넣은 현재노드에 바뀐 단어가 없다면 아래반복문 실행
 
             for (let i = 0; i < word.length; i++) {
                 if (word[i] !== _word[i]) diff++
@@ -39,9 +39,10 @@ function solution(begin, target, words) {
 }
 
 //dfs
-//스택
+//스택(선입후출구조 or 후입선출구조  )
+//stack을 정의하고 push와 pop을 사용해 스택 자료구조를 구현하거나 재귀함수(자기자신을 호출하는 함수)를 이용한다
 //재귀 함수 이용
-function check(word, target){
+function check(word, target){ //단어 체크하는 함수 구현
     let diff = 0;
     for(let i=0;i<word.length;i++){
         if(word[i] !== target[i]) diff++;
@@ -54,7 +55,7 @@ function check(word, target){
 const visited = {};
 let finalAns = 101;
 
-function dfs(words, target, word, ans){
+function dfs(words, target, word, ans){ //dfs 함수 구현
     if(target === word) {
         if(finalAns > ans) finalAns = ans;
     }
@@ -65,7 +66,7 @@ function dfs(words, target, word, ans){
             if(check(words[i], word)){
             visited[words[i]]=1;
 
-                dfs(words, target, words[i], ans+1);
+                dfs(words, target, words[i], ans+1);//재귀함수 호출
                 visited[words[i]]=0;
             }
         }
@@ -73,11 +74,10 @@ function dfs(words, target, word, ans){
 }
 
 function solution(begin, target, words) {
-    let answer = 0;
     let nowStr = begin + "";
 
 
-    dfs(words, target, nowStr, 0);
+    dfs(words, target, nowStr, 0);//재귀함수 호출
 
     if(finalAns === 101) return 0;
 

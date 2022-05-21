@@ -25,14 +25,14 @@ function solution(n, computers) {
         notVisited[i] = true//방문한 노드 true로 변경시켜주기
         for(let j =0; j< n ; j++){//컴퓨터의 갯수만큼 탐색하고 방문한 computers[i][j]가 1이고 아직 방문하지않았다면 dfs(j)반복호출
             if(computers[i][j] == 1 && notVisited[j] == false){
-                dfs(j)
+                dfs(j)//재귀함수 호출
             }
         }
     }
     //컴퓨터 배열의 길이만큼 탐색하여 방문하지않았다면 네트워크 갯수 더해줘야함
     for(let  i = 0;  i < computers.length; i++ ){
         if(notVisited[i] ==false){
-            dfs(i);
+            dfs(i);//재귀함수 호출
             answer++;
         }
     }

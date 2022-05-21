@@ -10,7 +10,7 @@ function solution(numbers, target) {
             }
         }
         else{
-            dfs(i+1,s+numbers[i]);//dfs이므로 더하기를 먼저해주고 그다음 빼기를 해주자
+            dfs(i+1,s+numbers[i]);
             dfs(i+1,s-numbers[i]);
         }
     }
